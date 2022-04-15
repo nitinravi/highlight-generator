@@ -19,6 +19,7 @@ Analyis  of commentator audio to find highlights in a game
 ## How we built it
 
 We use symbl api to convert speech to text, and process that text.
+We use NLP to find the tone of certian phrase, then we work upon it.
 
 ## Challenges we ran into
 
