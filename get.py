@@ -9,7 +9,7 @@ numberOfBytes = 0
 access_token = os.getenv('access_token')
 access_token = str(access_token)
 try:
-    audio_file = open('audiotets.wav', 'rb')  # use (r"path/to/file") when using windows path
+    audio_file = open('audiotest.wav', 'rb')  # use (r"path/to/file") when using windows path
     payload = audio_file.read()
     numberOfBytes = len(payload)
 except FileNotFoundError:

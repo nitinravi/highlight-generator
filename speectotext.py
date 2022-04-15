@@ -1,6 +1,8 @@
+from cgitb import text
 import requests
 import time
 import os
+import pprint
 baseUrl = "https://api-labs.symbl.ai/v1/conversations/{conversationId}/messages"
 # Generated using Submit text end point
 from get import conversationId
@@ -11,7 +13,7 @@ url = baseUrl.format(conversationId=conversationId)
 # set your access token here. See https://docs.symbl.ai/docs/developer-tools/authentication
 access_token = os.getenv('access_token')
 access_token = str(access_token)
-time.sleep(138)
+time.sleep(10)
 headers = {
     'Authorization': 'Bearer ' + access_token,
     'Content-Type': 'application/json'
@@ -33,7 +35,12 @@ response = requests.request("GET", url, headers=headers)
 if response.status_code == 200:
     # Successful API execution
     # messages is a list of id, text, from, startTime, endTime, conversationId, words, phrases, sentiment
-    print("messages => " + str(response.json()['messages']))
+    #print("messages => " + str(response.json()['messages']))
+    for i in range (len(response.json()['messages'])):
+        a = response.json()['messages'][i]['text']
+        b = response.json()['messages'][i]['timeOffset']
+        print (a,"at ",b )
+
 elif response.status_code in responses.keys():
     print(responses[response.status_code])  # Expected error occurred
 else:
