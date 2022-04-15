@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 baseUrl = "https://api-labs.symbl.ai/v1/conversations/{conversationId}/messages"
 # Generated using Submit text end point
 from get import conversationId
@@ -8,7 +9,9 @@ from get import conversationId
 url = baseUrl.format(conversationId=conversationId)
 
 # set your access token here. See https://docs.symbl.ai/docs/developer-tools/authentication
-access_token = ""
+access_token = os.getenv('access_token')
+access_token = str(access_token)
+time.sleep(138)
 headers = {
     'Authorization': 'Bearer ' + access_token,
     'Content-Type': 'application/json'

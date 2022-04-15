@@ -1,13 +1,15 @@
 import json
 import requests
+import os
 #from access import accessToken as access_token
 url = "https://api-labs.symbl.ai/v1/process/audio"
-access_token=""
 payload = None
 numberOfBytes = 0
 
+access_token = os.getenv('access_token')
+access_token = str(access_token)
 try:
-    audio_file = open('', 'rb')  # use (r"path/to/file") when using windows path
+    audio_file = open('audiotets.wav', 'rb')  # use (r"path/to/file") when using windows path
     payload = audio_file.read()
     numberOfBytes = len(payload)
 except FileNotFoundError:
@@ -69,3 +71,4 @@ elif response.status_code in responses.keys():
     print(responses[response.status_code])  # Expected error occurred
 else:
     print("Unexpected error occurred. Please contact support@symbl.ai" + ", Debug Message => " + str(response.text))
+
