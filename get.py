@@ -8,8 +8,9 @@ numberOfBytes = 0
 
 access_token = os.getenv('access_token')
 access_token = str(access_token)
+
 try:
-    audio_file = open('audiotest.wav', 'rb')  # use (r"path/to/file") when using windows path
+    audio_file = open('audiotest1.wav', 'rb')  # use (r"path/to/file") when using windows path
     payload = audio_file.read()
     numberOfBytes = len(payload)
 except FileNotFoundError:
@@ -26,7 +27,7 @@ headers = {
 }
 
 params = {
-    'name': "BusinessMeeting",
+    'name': "Highlights",
     # <Optional, string| your_conversation_name | Your meeting name. Default name set to conversationId.>
 
     # 'webhookUrl': "https://yourdomain.com/jobs/callback",
@@ -35,7 +36,7 @@ params = {
     # 'customVocabulary': ['Platform', 'Discussion', 'Targets'],
     # <Optional, list| custom_vocabulary_list> |Contains a list of words and phrases that provide hints to the speech recognition task.
 
-    'confidenceThreshold': 0.6,
+    'confidenceThreshold': 0.4,
     # <Optional, double| confidence_threshold | Minimum required confidence for the insight to be recognized.>
 
     # 'detectPhrases': True,
@@ -67,8 +68,8 @@ if response.status_code == 201:
     conversationId = response.json()['conversationId']
 # ID to be used with Conversation API.
     print("jobId => " + response.json()['jobId'])  # ID to be used with Job API.
+    jobId = response.json()['jobId']
 elif response.status_code in responses.keys():
     print(responses[response.status_code])  # Expected error occurred
 else:
     print("Unexpected error occurred. Please contact support@symbl.ai" + ", Debug Message => " + str(response.text))
-
